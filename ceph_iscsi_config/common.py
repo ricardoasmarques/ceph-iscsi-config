@@ -230,8 +230,8 @@ class Config(object):
             seed_now = Config.seed_config
             seed_now['created'] = get_time()
             seed = json.dumps(seed_now, sort_keys=True, indent=4, separators=(',', ': '))
-            ioctx.write_full(self.config_name, seed)
-            ioctx.set_xattr(self.config_name, "epoch", "0")
+            ioctx.write_full(self.config_name, seed.encode('utf-8'))
+            ioctx.set_xattr(self.config_name, "epoch", "0".encode('utf-8'))
             self.changed = True
 
         self.unlock()
